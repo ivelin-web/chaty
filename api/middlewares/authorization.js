@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 module.exports = (req, res, next) => {
-    const token = req.cookie.access_token;
+    const token = req.cookies.access_token;
 
     // If don't have token return res with message
     if (!token) {

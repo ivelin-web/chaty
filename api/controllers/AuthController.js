@@ -27,7 +27,7 @@ module.exports.login = async (req, res) => {
     const invalidUserMessage = "Wrong email or password";
 
     try {
-        // Validate email
+        // Validate username
         const user = await UserModel.findOne({ username }).select("+password");
 
         if (!user) {
