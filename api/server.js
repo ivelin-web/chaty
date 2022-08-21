@@ -4,6 +4,8 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 const authRoute = require("./routes/auth");
+const userRoute = require("./routes/user");
+const messageRoute = require("./routes/message");
 
 // App config
 require("dotenv").config();
@@ -24,6 +26,8 @@ mongoose.connect(process.env.MONGO_URL, () => {
 
 // API routes
 app.use("/api/auth", authRoute);
+app.use("/api/users", userRoute);
+app.use("/api/messages", messageRoute);
 
 // Listener
 const server = app.listen(port, () => {
