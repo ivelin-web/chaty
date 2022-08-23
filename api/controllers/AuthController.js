@@ -46,8 +46,6 @@ module.exports.login = async (req, res) => {
 
         // Return res with cookie
         res.cookie("access_token", token, {
-            secure: process.env.NODE_ENV !== "development",
-            sameSite: "none",
             httpOnly: true,
         }).json({ message: "Logged in successfully" });
     } catch (err) {

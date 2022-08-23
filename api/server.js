@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/user");
 const messageRoute = require("./routes/message");
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 app.use(cookieParser());
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
 // DB connection
 mongoose.connect(process.env.MONGO_URL, () => {
