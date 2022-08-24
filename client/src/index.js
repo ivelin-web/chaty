@@ -4,14 +4,17 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { UserContextProvider } from "./context/user/UserContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
         <Suspense fallback={""}>
             <Router>
-                <ToastContainer position="bottom-right" autoClose={5000} pauseOnFocusLoss pauseOnHover draggable theme="dark" />
-                <App />
+                <UserContextProvider>
+                    <ToastContainer position="bottom-right" autoClose={5000} draggable theme="dark" />
+                    <App />
+                </UserContextProvider>
             </Router>
         </Suspense>
     </React.StrictMode>

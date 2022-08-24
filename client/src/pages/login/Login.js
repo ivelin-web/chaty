@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import FormContainer from "../../components/Login/Login";
 import Logo from "../../assets/logo.svg";
-import { login } from "../../services/AuthService";
+import { getAuthUser, login } from "../../services/AuthService";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { UserContext } from "../../context/user/UserContext";
+import { Login as LoginAction } from "../../context/user/UserActions";
 
 export default function Login() {
     const [state, setState] = useState({
@@ -13,6 +15,7 @@ export default function Login() {
     });
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+    const { dispatch } = useContext(UserContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -21,8 +24,16 @@ export default function Login() {
 
         login(state)
             .then((res) => {
-                toast.success(res.data.message);
-                navigate("/");
+                getAuthUser()
+                    .then((userRes) => {
+                        toast.success(res.data.message);
+                        dispatch(LoginAction(userRes.data));
+                        navigate("/");
+                    })
+                    .catch(({ response: err }) => {
+                        setIsLoading(false);
+                        toast.error(err.data?.message);
+                    });
             })
             .catch(({ response: err }) => {
                 setIsLoading(false);
