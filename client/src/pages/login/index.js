@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import FormContainer from "../../components/FormContainers/Login";
+import FormContainer from "../../components/Containers/Forms/Login";
 import Logo from "../../assets/logo.svg";
 import { getAuthUser, login } from "../../services/auth";
 import { toast } from "react-toastify";

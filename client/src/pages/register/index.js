@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import FormContainer from "../../components/FormContainers/Register";
+import FormContainer from "../../components/Containers/Forms/Register";
 import Logo from "../../assets/logo.svg";
 import { register } from "../../services/auth";
 import { toast } from "react-toastify";

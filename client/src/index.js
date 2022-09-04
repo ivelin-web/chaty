@@ -12,7 +12,7 @@ root.render(
         <Suspense fallback={""}>
             <Router>
                 <UserContextProvider>
-                    <ToastContainer position="bottom-right" autoClose={5000} draggable theme="dark" />
+                    <ToastContainer position="bottom-right" autoClose={3500} pauseOnHover={false} pauseOnFocusLoss={false} draggable theme="dark" />
                     <App />
                 </UserContextProvider>
             </Router>
