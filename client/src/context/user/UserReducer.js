@@ -8,6 +8,12 @@ const UserReducer = (state, action) => {
                 user: action.payload,
             };
 
+        case actionTypes.UPDATE_USER:
+            return {
+                ...state,
+                user: action.payload,
+            };
+
         case actionTypes.LOGIN:
             return {
                 user: action.payload,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "@Axios";
 import { Buffer } from "buffer";
@@ -7,6 +7,8 @@ import Container from "@Components/Containers/SetAvatar";
 import { setAvatar } from "@Services/user";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { UserContext } from "@Context/user/userContext";
+import { UpdateUser } from "@Context/user/userActions";
 
 export default function SetAvatar() {
     const api = "https://api.multiavatar.com/45678945";
@@ -15,6 +17,7 @@ export default function SetAvatar() {
     const [avatars, setAvatars] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [selectedAvatar, setSelectedAvatar] = useState(null);
+    const { dispatch } = useContext(UserContext);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -35,7 +38,7 @@ export default function SetAvatar() {
     }, []);
 
     const setProfilePicture = () => {
-        if (!selectedAvatar) {
+        if (selectedAvatar === null) {
             toast.error("Please select an avatar");
             return;
         }
@@ -44,7 +47,8 @@ export default function SetAvatar() {
 
         setAvatar({ avatarImage })
             .then(({ data }) => {
-                console.log(data);
+                dispatch(UpdateUser(data));
+                navigate("/");
             })
             .catch(({ response: err }) => {
                 console.log(err);

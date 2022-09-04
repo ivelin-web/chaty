@@ -8,3 +8,12 @@ export const setAvatar = async (avatarImage) => {
 
     return res;
 };
+
+// Get all users except logged in
+export const getUsers = async () => {
+    const res = await axios.get("users", {
+        withCredentials: true,
+    });
+
+    return res;
+};
