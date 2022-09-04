@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import FormContainer from "../../components/Containers/Forms/Register";
-import Logo from "../../assets/logo.svg";
-import { register } from "../../services/auth";
+import FormContainer from "@Components/Containers/Forms/Register";
+import Logo from "@Assets/logo.svg";
+import { register } from "@Services/auth";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

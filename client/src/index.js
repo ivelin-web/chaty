@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { UserContextProvider } from "./context/user/userContext";
+import { UserContextProvider } from "@Context/user/userContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

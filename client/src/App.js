@@ -1,10 +1,8 @@
-import { useState } from "react";
-import { useContext } from "react";
-import { useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import AppRouter from "./AppRouter";
-import { GetUser } from "./context/user/userActions";
-import { UserContext } from "./context/user/userContext";
-import { getAuthUser } from "./services/auth";
+import { GetUser } from "@Context/user/userActions";
+import { UserContext } from "@Context/user/userContext";
+import { getAuthUser } from "@Services/auth";
 
 function App() {
     const [isFetching, setIsFetching] = useState(true);

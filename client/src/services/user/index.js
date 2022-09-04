@@ -1,4 +1,4 @@
-import axios from "../../axios";
+import axios from "@Axios";
 
 // Set avatar
 export const setAvatar = async (avatarImage) => {

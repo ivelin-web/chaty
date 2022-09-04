@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import FormContainer from "../../components/Containers/Forms/Login";
-import Logo from "../../assets/logo.svg";
-import { getAuthUser, login } from "../../services/auth";
+import FormContainer from "@Components/Containers/Forms/Login";
+import Logo from "@Assets/logo.svg";
+import { getAuthUser, login } from "@Services/auth";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { UserContext } from "../../context/user/userContext";
-import { Login as LoginAction } from "../../context/user/userActions";
+import { UserContext } from "@Context/user/userContext";
+import { Login as LoginAction } from "@Context/user/userActions";
 
 export default function Login() {
     const [state, setState] = useState({

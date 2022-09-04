@@ -1,12 +1,12 @@
 import React, { lazy, useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { UserContext } from "./context/user/userContext";
+import { UserContext } from "@Context/user/userContext";
 
 // Lazy load pages
-const Chat = lazy(() => import("./pages/chat"));
-const SetAvatar = lazy(() => import("./pages/setAvatar"));
-const Login = lazy(() => import("./pages/login"));
-const Register = lazy(() => import("./pages/register"));
+const Chat = lazy(() => import("@Pages/chat"));
+const SetAvatar = lazy(() => import("@Pages/setAvatar"));
+const Login = lazy(() => import("@Pages/login"));
+const Register = lazy(() => import("@Pages/register"));
 
 export default function AppRouter() {
     const { user } = useContext(UserContext);

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "../../axios";
+import axios from "@Axios";
 import { Buffer } from "buffer";
-import loader from "../../assets/loader.gif";
-import Container from "../../components/Containers/SetAvatar";
-import { setAvatar } from "../../services/user";
+import loader from "@Assets/loader.gif";
+import Container from "@Components/Containers/SetAvatar";
+import { setAvatar } from "@Services/user";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

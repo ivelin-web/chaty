@@ -1,4 +1,4 @@
-import axios from "../../axios";
+import axios from "@Axios";
 
 // Login user
 export const login = async (credentials) => {
