@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import Container from "@Components/Containers/Chat";
 import { getUsers } from "@Services/user";
 import ContactList from "@Components/ContactList";
+import Welcome from "@Components/Welcome";
+import UserChat from "@Components/UserChat";
 
 export default function Chat() {
     const [contacts, setContacts] = useState([]);
@@ -34,6 +36,7 @@ export default function Chat() {
         <Container>
             <div className="container">
                 <ContactList currentChat={currentChat} onChatChange={handleChatChange} contacts={contacts} />
+                {currentChat ? <UserChat currentChat={currentChat} /> : <Welcome />}
             </div>
         </Container>
     );
