@@ -24,7 +24,7 @@ module.exports.addMessage = async (req, res) => {
 
 // Get all messages
 module.exports.getMessages = async (req, res) => {
-    const { otherUser } = req.body;
+    const { otherUser } = req.query;
 
     // Check if otherUser is current user
     if (req.user._id === otherUser) {

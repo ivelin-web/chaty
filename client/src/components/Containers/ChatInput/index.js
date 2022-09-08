@@ -14,6 +14,7 @@ const Container = styled.div`
         gap: 1rem;
         .emoji {
             position: relative;
+            margin-left: 1rem;
             svg {
                 font-size: 1.5rem;
                 color: #ffff00c8;
@@ -76,6 +77,7 @@ const Container = styled.div`
             align-items: center;
             background: #9a86f3;
             border: none;
+            cursor: pointer;
             svg {
                 font-size: 2rem;
                 color: #fff;

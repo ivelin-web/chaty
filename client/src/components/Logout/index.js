@@ -39,6 +39,7 @@ const Button = styled.button`
     border-radius: 0.5rem;
     background: #9a86f3;
     cursor: pointer;
+    border: none;
     svg {
         font-size: 1.3rem;
         color: #ebe7ff;

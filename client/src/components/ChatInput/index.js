@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Picker from "emoji-picker-react";
 import { IoMdSend } from "react-icons/io";
 import { BsEmojiSmileFill } from "react-icons/bs";
 import Container from "@Components/Containers/ChatInput";
+import useOnClickOutside from "@Hooks/useOnClickOutside";
+import useKeyPress from "hooks/useKeyPress";
 
-export default function ChatInput({ onSendMessage }) {
+export default function ChatInput({ currentChat, onSendMessage }) {
     const [showEmojiPicker, setShowEmojiPicker] = useState(false);
     const [message, setMessage] = useState("");
+    const emojiPickerRef = useRef();
+
+    useOnClickOutside(emojiPickerRef, () => setShowEmojiPicker(false));
+    useKeyPress("Escape", () => setShowEmojiPicker(false));
+
+    useEffect(() => {
+        if (message !== "") {
+            setMessage("");
+        }
+    }, [currentChat]);
 
     const handleEmojiPickerHideShow = () => {
         setShowEmojiPicker((prev) => {
@@ -38,7 +50,11 @@ export default function ChatInput({ onSendMessage }) {
             <div className="buttonContainer">
                 <div className="emoji">
                     <BsEmojiSmileFill onClick={handleEmojiPickerHideShow} />
-                    {showEmojiPicker && <Picker onEmojiClick={handleEmojiClick} />}
+                    {showEmojiPicker && (
+                        <div ref={emojiPickerRef}>
+                            <Picker onEmojiClick={handleEmojiClick} />
+                        </div>
+                    )}
                 </div>
             </div>
             <form onSubmit={handleSubmit} className="inputContainer">
