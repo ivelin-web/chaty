@@ -6,12 +6,21 @@ import { getUsers } from "@Services/user";
 import ContactList from "@Components/ContactList";
 import Welcome from "@Components/Welcome";
 import UserChat from "@Components/UserChat";
+import SocketService from "@Services/socket";
 
 export default function Chat() {
     const [contacts, setContacts] = useState([]);
     const [currentChat, setCurrentChat] = useState(null);
     const { user } = useContext(UserContext);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!user) {
+            return;
+        }
+
+        SocketService.socket.emit("add-user", user._id);
+    }, []);
 
     useEffect(() => {
         if (!user.isAvatarImageSet) {

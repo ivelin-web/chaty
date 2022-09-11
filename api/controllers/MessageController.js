@@ -16,7 +16,7 @@ module.exports.addMessage = async (req, res) => {
             users: [req.user._id, recipient],
         });
 
-        res.status(201).json({ message: "Message has been added successfully" });
+        res.status(201).json(message);
     } catch (err) {
         res.status(500).json(err);
     }

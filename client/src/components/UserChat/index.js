@@ -4,10 +4,19 @@ import NoAvatar from "@Assets/no-avatar.svg";
 import Logout from "@Components/Logout";
 import ChatInput from "@Components/ChatInput";
 import { sendMessage, getMessages } from "@Services/message";
+import SocketService from "@Services/socket";
 
 export default function UserChat({ currentChat }) {
     const [messages, setMessages] = useState([]);
     const [isMessagesFetching, setIsMessagesFetching] = useState(true);
+
+    useEffect(() => {
+        SocketService.socket.on("msg-receive", (message) => {
+            setMessages((prev) => {
+                return [...prev, message];
+            });
+        });
+    }, []);
 
     useEffect(() => {
         setIsMessagesFetching(true);
@@ -36,7 +45,14 @@ export default function UserChat({ currentChat }) {
 
         sendMessage(payload)
             .then(({ data }) => {
-                console.log(data);
+                SocketService.socket.emit("send-msg", {
+                    message: data,
+                    recipient: currentChat._id,
+                });
+
+                setMessages((prev) => {
+                    return [...prev, data];
+                });
             })
             .catch(({ response: err }) => {
                 console.log(err);

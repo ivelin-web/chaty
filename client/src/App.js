@@ -3,10 +3,19 @@ import AppRouter from "./AppRouter";
 import { GetUser } from "@Context/user/userActions";
 import { UserContext } from "@Context/user/userContext";
 import { getAuthUser } from "@Services/auth";
+import SocketService from "@Services/socket";
 
 function App() {
     const [isFetching, setIsFetching] = useState(true);
     const { dispatch } = useContext(UserContext);
+
+    useEffect(() => {
+        SocketService.connect("http://localhost:5000")
+            .then(() => {})
+            .catch((err) => {
+                console.log(`Error: ${err}`);
+            });
+    }, []);
 
     // When the page is rendered, check for logged in user
     useEffect(() => {
