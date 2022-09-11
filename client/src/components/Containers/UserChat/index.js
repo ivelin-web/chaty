@@ -31,6 +31,14 @@ const Container = styled.div`
         flex-direction: column;
         gap: 1rem;
         overflow: auto;
+        &::-webkit-scrollbar {
+            width: 0.2rem;
+            &-thumb {
+                background: #ffffff39;
+                width: 0.1rem;
+                border-radius: 1rem;
+            }
+        }
         .message {
             display: flex;
             align-items: center;
