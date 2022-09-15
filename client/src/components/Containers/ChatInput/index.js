@@ -2,19 +2,20 @@ import styled from "styled-components";
 
 const Container = styled.div`
     display: grid;
-    grid-template-columns: 5% 95%;
+    grid-template-columns: 5% 94%;
     align-items: center;
     background: #080420;
     padding: 0.2rem;
     padding-bottom: 0.3rem;
+    gap: 1%;
     .buttonContainer {
         display: flex;
         align-items: center;
+        justify-content: center;
         color: #fff;
         gap: 1rem;
         .emoji {
             position: relative;
-            margin-left: 1rem;
             svg {
                 font-size: 1.5rem;
                 color: #ffff00c8;

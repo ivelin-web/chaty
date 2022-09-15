@@ -64,6 +64,7 @@ const Container = styled.div`
         justify-content: center;
         align-items: center;
         gap: 2rem;
+        cursor: pointer;
         .avatar {
             img {
                 height: 4rem;

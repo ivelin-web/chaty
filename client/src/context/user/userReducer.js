@@ -16,6 +16,7 @@ const UserReducer = (state, action) => {
 
         case actionTypes.LOGIN:
             return {
+                ...state,
                 user: action.payload,
             };
 

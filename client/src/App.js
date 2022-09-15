@@ -20,8 +20,8 @@ function App() {
     // When the page is rendered, check for logged in user
     useEffect(() => {
         getAuthUser()
-            .then((res) => {
-                dispatch(GetUser(res.data));
+            .then(({ data }) => {
+                dispatch(GetUser(data));
             })
             .catch(({ response: err }) => {
                 console.log(err);

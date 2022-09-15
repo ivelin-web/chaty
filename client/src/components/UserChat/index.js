@@ -1,14 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Container from "@Components/Containers/UserChat";
 import NoAvatar from "@Assets/no-avatar.svg";
 import Logout from "@Components/Logout";
 import ChatInput from "@Components/ChatInput";
 import { sendMessage, getMessages } from "@Services/message";
 import SocketService from "@Services/socket";
+import { v4 as uuidv4 } from "uuid";
 
 export default function UserChat({ currentChat }) {
     const [messages, setMessages] = useState([]);
     const [isMessagesFetching, setIsMessagesFetching] = useState(true);
+    const scrollRef = useRef();
+
+    useEffect(() => {
+        scrollRef.current?.scrollIntoView({ behaviour: "smooth" });
+    }, [messages]);
 
     useEffect(() => {
         SocketService.socket.on("msg-receive", (message) => {
@@ -16,6 +22,10 @@ export default function UserChat({ currentChat }) {
                 return [...prev, message];
             });
         });
+
+        return () => {
+            SocketService.socket.off("msg-receive");
+        };
     }, []);
 
     useEffect(() => {
@@ -75,7 +85,7 @@ export default function UserChat({ currentChat }) {
             <div className="chatMessages">
                 {messages.map((message) => {
                     return (
-                        <div key={message._id}>
+                        <div ref={scrollRef} key={uuidv4()}>
                             <div className={`message ${message.sender === currentChat._id ? "received" : "sended"}`}>
                                 <div className="content">
                                     <p>{message.text}</p>

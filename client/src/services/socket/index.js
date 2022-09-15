@@ -1,9 +1,7 @@
 import { io } from "socket.io-client";
 
 class SocketService {
-    constructor() {
-        this.socket = null;
-    }
+    socket = null;
 
     connect = (url) => {
         return new Promise((resolve, reject) => {

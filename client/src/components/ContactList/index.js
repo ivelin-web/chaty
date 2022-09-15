@@ -22,7 +22,7 @@ export default function ContactList({ contacts, onChatChange, currentChat }) {
                     );
                 })}
             </div>
-            <div className="currentUser">
+            <div onClick={() => onChatChange(null)} className="currentUser">
                 <Contact user={user} />
             </div>
         </Container>

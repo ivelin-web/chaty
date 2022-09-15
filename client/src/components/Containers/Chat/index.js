@@ -16,7 +16,6 @@ const Container = styled.div`
         display: grid;
         grid-template-columns: 25% 75%;
         @media screen and (min-width: 720px) and (max-width: 1080px) {
-            grid-template-columns: 35% 65%;
         }
     }
 `;
