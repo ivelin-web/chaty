@@ -1,19 +1,27 @@
 import styled from "styled-components";
 
 const Container = styled.div`
+    width: 75%;
     padding-top: 1rem;
     display: grid;
     grid-template-rows: 10% 78% 12%;
     gap: 0.1rem;
     overflow: hidden;
-    @media screen and (min-width: 720px) and (max-width: 1080px) {
+    @media screen and (max-width: 1080px) {
         grid-template-rows: 15% 70% 15%;
+        width: 85%;
     }
     .chatHeader {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 0 2rem;
+        @media screen and (max-width: 768px) {
+            padding: 0 1.5rem;
+        }
+        @media screen and (max-width: 500px) {
+            padding: 0 1rem;
+        }
         .userDetails {
             display: flex;
             align-items: center;
@@ -44,6 +52,12 @@ const Container = styled.div`
                 border-radius: 1rem;
             }
         }
+        @media screen and (max-width: 768px) {
+            padding: 0 1.5rem;
+        }
+        @media screen and (max-width: 500px) {
+            padding: 0 1rem;
+        }
         .message {
             display: flex;
             align-items: center;
@@ -54,6 +68,16 @@ const Container = styled.div`
                 font-size: 1.1rem;
                 border-radius: 1rem;
                 color: #d1d1d1;
+            }
+            @media screen and (max-width: 768px) {
+                p {
+                    font-size: 1rem;
+                }
+            }
+            @media screen and (max-width: 500px) {
+                p {
+                    font-size: 0.9rem;
+                }
             }
         }
         .sended {

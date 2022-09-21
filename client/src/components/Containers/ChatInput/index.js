@@ -1,13 +1,17 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-    display: grid;
-    grid-template-columns: 5% 94%;
+    display: flex;
     align-items: center;
     background: #080420;
-    padding: 0.2rem;
-    padding-bottom: 0.3rem;
-    gap: 1%;
+    padding: 0 2rem;
+    gap: 1rem;
+    @media screen and (max-width: 768px) {
+        padding: 0 1.5rem;
+    }
+    @media screen and (max-width: 500px) {
+        padding: 0 1rem;
+    }
     .buttonContainer {
         display: flex;
         align-items: center;
@@ -54,20 +58,25 @@ const Container = styled.div`
         border-radius: 2rem;
         display: flex;
         align-content: center;
-        gap: 2rem;
         background: #ffffff34;
         input {
             width: 90%;
             background: transparent;
             color: #fff;
             border: none;
-            padding-left: 1rem;
+            padding: 0 1rem;
             font-size: 1.2rem;
             &::selection {
                 background: #9186f3;
             }
             &:focus {
                 outline: none;
+            }
+            @media screen and (max-width: 768px) {
+                font-size: 1rem;
+            }
+            @media screen and (max-width: 500px) {
+                font-size: 0.9rem;
             }
         }
         button {
@@ -79,6 +88,12 @@ const Container = styled.div`
             background: #9a86f3;
             border: none;
             cursor: pointer;
+            @media screen and (max-width: 768px) {
+                padding: 0.3rem 1.5rem;
+            }
+            @media screen and (max-width: 500px) {
+                padding: 0.3rem 1.25rem;
+            }
             svg {
                 font-size: 2rem;
                 color: #fff;

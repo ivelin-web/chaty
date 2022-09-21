@@ -1,10 +1,16 @@
 import styled from "styled-components";
 
 const Container = styled.div`
+    width: 25%;
     display: grid;
-    grid-template-rows: 10% 75% 15%;
+    padding-top: 1rem;
+    grid-template-rows: 10% 78% 12%;
     overflow: hidden;
-    background: #080420;
+    background: #090424;
+    @media screen and (max-width: 1080px) {
+        width: 15%;
+        grid-template-rows: 15% 70% 15%;
+    }
     .brand {
         display: flex;
         align-items: center;
@@ -16,6 +22,11 @@ const Container = styled.div`
         h3 {
             color: #fff;
             text-transform: uppercase;
+        }
+        @media screen and (max-width: 1080px) {
+            h3 {
+                display: none;
+            }
         }
     }
     .contacts {
@@ -43,6 +54,12 @@ const Container = styled.div`
             align-items: center;
             display: flex;
             transition: 0.5s ease-in-out;
+            position: relative;
+            @media screen and (max-width: 1080px) {
+                justify-content: center;
+                min-height: 4rem;
+                background: none;
+            }
             .avatar {
                 img {
                     height: 3rem;
@@ -52,6 +69,9 @@ const Container = styled.div`
                 h3 {
                     color: #fff;
                 }
+                @media screen and (max-width: 1080px) {
+                    display: none;
+                }
             }
         }
         .selected {
@@ -59,11 +79,12 @@ const Container = styled.div`
         }
     }
     .currentUser {
+        padding: 0.5rem;
         background: #0d0d30;
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 2rem;
+        gap: 1.5rem;
         cursor: pointer;
         .avatar {
             img {
@@ -75,13 +96,8 @@ const Container = styled.div`
             h2 {
                 color: #fff;
             }
-        }
-        @media screen and (min-width: 720px) and (max-width: 1080px) {
-            gap: 0.5rem;
-            .username {
-                h2 {
-                    font-size: 1rem;
-                }
+            @media screen and (max-width: 1080px) {
+                display: none;
             }
         }
     }
