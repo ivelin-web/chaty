@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Container = styled.div`
     display: flex;
     align-items: center;
-    background: #080420;
+    background: #090424;
     padding: 0 2rem;
     gap: 1rem;
     @media screen and (max-width: 768px) {

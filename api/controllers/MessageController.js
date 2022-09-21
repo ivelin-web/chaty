@@ -15,6 +15,13 @@ module.exports.addMessage = async (req, res) => {
             sender: req.user._id,
             users: [req.user._id, recipient],
         });
+        const sendUserSocket = global.onlineUsers.get(recipient);
+        const io = require("../socket").getIO();
+
+        // Check if user is online
+        if (sendUserSocket) {
+            io.to(sendUserSocket).emit("msg-receive", message);
+        }
 
         res.status(201).json(message);
     } catch (err) {

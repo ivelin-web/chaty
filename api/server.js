@@ -7,7 +7,6 @@ const cors = require("cors");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/user");
 const messageRoute = require("./routes/message");
-const socket = require("socket.io");
 
 // App config
 require("dotenv").config();
@@ -37,29 +36,6 @@ const server = app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
 
-// Socket.io
-const io = socket(server, {
-    cors: {
-        origin: "http://localhost:3000",
-        credentials: true,
-    },
-});
-
+// Init Socket.io
+require("./socket").init(server);
 global.onlineUsers = new Map();
-
-io.on("connection", (socket) => {
-    global.chatSocket = socket;
-
-    socket.on("add-user", (userId) => {
-        onlineUsers.set(userId, socket.id);
-    });
-
-    socket.on("send-msg", ({ message, recipient }) => {
-        const sendUserSocket = onlineUsers.get(recipient);
-
-        // Check if user is online
-        if (sendUserSocket) {
-            socket.to(sendUserSocket).emit("msg-receive", message);
-        }
-    });
-});
