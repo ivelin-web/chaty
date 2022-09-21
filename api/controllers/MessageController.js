@@ -1,4 +1,5 @@
 const MessageModel = require("../models/Message");
+const UserModel = require("../models/User");
 
 // Add message
 module.exports.addMessage = async (req, res) => {
@@ -15,8 +16,20 @@ module.exports.addMessage = async (req, res) => {
             sender: req.user._id,
             users: [req.user._id, recipient],
         });
+        const recipientUser = await UserModel.findById(recipient);
         const sendUserSocket = global.onlineUsers.get(recipient);
         const io = require("../socket").getIO();
+
+        // Check if recipient user doesn't include unread message from current user
+        if (!recipientUser.unreadMessages.includes(req.user._id)) {
+            recipientUser.unreadMessages.push(req.user._id);
+            const updatedUser = await recipientUser.save();
+
+            // Check if user is online
+            if (sendUserSocket) {
+                io.to(sendUserSocket).emit("unread-msg-receive", updatedUser);
+            }
+        }
 
         // Check if user is online
         if (sendUserSocket) {

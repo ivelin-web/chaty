@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {useContext, useEffect, useRef, useState} from "react";
 import Container from "@Components/Containers/UserChat";
 import NoAvatar from "@Assets/no-avatar.svg";
 import Logout from "@Components/Logout";
@@ -6,10 +6,14 @@ import ChatInput from "@Components/ChatInput";
 import { sendMessage, getMessages } from "@Services/message";
 import SocketService from "@Services/socket";
 import { v4 as uuidv4 } from "uuid";
+import { UserContext } from "@Context/user/userContext";
+import {UpdateUser} from "@Context/user/userActions";
+import { deleteUnreadMessage } from "@Services/user";
 
 export default function UserChat({ currentChat }) {
     const [messages, setMessages] = useState([]);
     const [isMessagesFetching, setIsMessagesFetching] = useState(true);
+    const { dispatch, user } = useContext(UserContext);
     const scrollRef = useRef();
 
     useEffect(() => {
@@ -18,15 +22,25 @@ export default function UserChat({ currentChat }) {
 
     useEffect(() => {
         SocketService.socket.on("msg-receive", (message) => {
-            setMessages((prev) => {
-                return [...prev, message];
-            });
+            if (message.sender === currentChat._id) {
+                deleteUnreadMessage(currentChat._id)
+                    .then(({ data }) => {
+                        dispatch(UpdateUser(data));
+                    })
+                    .catch(({ response: err }) => {
+                        console.log(err);
+                    });
+
+                setMessages((prev) => {
+                    return [...prev, message];
+                });
+            }
         });
 
         return () => {
             SocketService.socket.off("msg-receive");
         };
-    }, []);
+    }, [currentChat]);
 
     useEffect(() => {
         setIsMessagesFetching(true);
@@ -55,11 +69,6 @@ export default function UserChat({ currentChat }) {
 
         sendMessage(payload)
             .then(({ data }) => {
-                SocketService.socket.emit("send-msg", {
-                    message: data,
-                    recipient: currentChat._id,
-                });
-
                 setMessages((prev) => {
                     return [...prev, data];
                 });

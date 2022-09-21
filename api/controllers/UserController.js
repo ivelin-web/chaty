@@ -33,3 +33,25 @@ module.exports.getUsers = async (req, res) => {
         res.status(500).json(err);
     }
 };
+
+// Remove unread message
+module.exports.removeUnreadMessage = async (req, res) => {
+    const { recipientId } = req.params;
+
+    try {
+        const user = await UserModel.findById(req.user._id);
+
+        if (!user.unreadMessages.includes(recipientId)) {
+            return res.status(400).json({ message: "You don't have unread messages from given user" });
+        }
+
+        // Remove unread message from this user
+        user.unreadMessages = user.unreadMessages.filter((unreadMessageUser) => unreadMessageUser != recipientId);
+        const updatedUser = await user.save();
+
+        res.json(updatedUser);
+    }
+    catch (err) {
+        res.status(500).json(err);
+    }
+}

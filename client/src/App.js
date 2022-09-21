@@ -10,7 +10,7 @@ function App() {
     const { dispatch } = useContext(UserContext);
 
     useEffect(() => {
-        SocketService.connect("http://localhost:5000")
+        SocketService.connect(process.env.REACT_APP_API_URL)
             .then(() => {})
             .catch((err) => {
                 console.log(`Error: ${err}`);

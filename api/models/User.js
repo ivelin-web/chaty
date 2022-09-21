@@ -30,6 +30,13 @@ const userSchema = new mongoose.Schema(
             type: String,
             default: "",
         },
+        unreadMessages: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User",
+                default: [],
+            },
+        ],
     },
     {
         timestamps: true,

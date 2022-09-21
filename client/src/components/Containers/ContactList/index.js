@@ -34,7 +34,8 @@ const Container = styled.div`
         flex-direction: column;
         align-items: center;
         overflow: auto;
-        gap: 0.8rem;
+        gap: 1rem;
+        padding: 1rem 0;
         &::-webkit-scrollbar {
             width: 0.2rem;
             &-thumb {
@@ -45,7 +46,7 @@ const Container = styled.div`
         }
         .contact {
             background: #ffffff39;
-            min-height: 5rem;
+            min-height: 4.5rem;
             width: 90%;
             cursor: pointer;
             border-radius: 0.2rem;
@@ -88,7 +89,7 @@ const Container = styled.div`
         cursor: pointer;
         .avatar {
             img {
-                height: 4rem;
+                height: 50px; 
                 max-inline-size: 100%;
             }
         }

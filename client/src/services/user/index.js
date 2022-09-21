@@ -17,3 +17,12 @@ export const getUsers = async () => {
 
     return res;
 };
+
+// Delete unread message
+export const deleteUnreadMessage = async (recipientId) => {
+    const res = await axios.delete(`users/unreadMessages/${recipientId}`, {
+        withCredentials: true,
+    })
+
+    return res;
+}
