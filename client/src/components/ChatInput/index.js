@@ -4,7 +4,7 @@ import { IoMdSend } from "react-icons/io";
 import { BsEmojiSmileFill } from "react-icons/bs";
 import Container from "@Components/Containers/ChatInput";
 import useOnClickOutside from "@Hooks/useOnClickOutside";
-import useKeyPress from "hooks/useKeyPress";
+import useKeyPress from "@Hooks/useKeyPress";
 
 export default function ChatInput({ currentChat, onSendMessage }) {
     const [showEmojiPicker, setShowEmojiPicker] = useState(false);

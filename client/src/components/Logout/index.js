@@ -7,14 +7,16 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { UserContext } from "@Context/user/userContext";
 import { UpdateUser } from "@Context/user/userActions";
+import SocketService from "@Services/socket";
 
 export default function Logout() {
     const navigate = useNavigate();
-    const { dispatch } = useContext(UserContext);
+    const { dispatch, user } = useContext(UserContext);
 
     const handleLogout = () => {
         logout()
             .then(({ data }) => {
+                SocketService.socket.emit("remove-user", user._id);
                 toast.success(data.message);
                 dispatch(UpdateUser(null));
                 navigate("/login");

@@ -31,6 +31,10 @@ export default function Chat() {
 
         getUsers()
             .then(({ data }) => {
+                // Sort contacts by notifications
+                data.sort((a, b) => {
+                    return user.unreadMessages.includes(b._id) - user.unreadMessages.includes(a._id);
+                })
                 setContacts(data);
             })
             .catch(({ response: err }) => {
@@ -55,7 +59,7 @@ export default function Chat() {
     return (
         <Container>
             <div className="container">
-                <ContactList currentChat={currentChat} onChatChange={handleChatChange} contacts={contacts} />
+                <ContactList setContacts={setContacts} currentChat={currentChat} onChatChange={handleChatChange} contacts={contacts} />
                 {currentChat ? <UserChat currentChat={currentChat} /> : <Welcome />}
             </div>
         </Container>

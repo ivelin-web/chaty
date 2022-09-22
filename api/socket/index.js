@@ -1,4 +1,4 @@
-const { onAddUser } = require("./listeners");
+const { onAddUser, onRemoveUser } = require("./listeners");
 
 let io = null;
 
@@ -25,5 +25,6 @@ module.exports = {
 const loadIOListeners = () => {
     io.on("connection", (socket) => {
         onAddUser(socket);
+        onRemoveUser(socket);
     });
 };

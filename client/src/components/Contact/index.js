@@ -3,9 +3,9 @@ import UnreadMessage from "@Components/UnreadMessage";
 import NoAvatar from "@Assets/no-avatar.svg";
 import { UserContext } from "@Context/user/userContext";
 import SocketService from "@Services/socket";
-import { UpdateUser } from "../../context/user/userActions";
+import { UpdateUser } from "@Context/user/userActions";
 
-export default function Contact({ contact, user }) {
+export default function Contact({ setContacts, contact, user }) {
     const { dispatch, user: currentUser } = useContext(UserContext);
 
     const checkIfContactHasUnreadMessages = () => {
@@ -18,6 +18,12 @@ export default function Contact({ contact, user }) {
     useEffect(() => {
         SocketService.socket.on("unread-msg-receive", (updatedUser) => {
             dispatch(UpdateUser(updatedUser));
+            setContacts((prev) => {
+                prev.sort((a, b) => {
+                    return updatedUser.unreadMessages.includes(b._id) - updatedUser.unreadMessages.includes(a._id);
+                })
+                return prev;
+            })
         });
 
         return () => {

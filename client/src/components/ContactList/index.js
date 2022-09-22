@@ -4,7 +4,7 @@ import Container from "@Components/Containers/ContactList";
 import Logo from "@Assets/logo.svg";
 import Contact from "@Components/Contact";
 
-export default function ContactList({ contacts, onChatChange, currentChat }) {
+export default function ContactList({ setContacts, contacts, onChatChange, currentChat }) {
     const { user } = useContext(UserContext);
 
     return (
@@ -17,7 +17,7 @@ export default function ContactList({ contacts, onChatChange, currentChat }) {
                 {contacts.map((contact) => {
                     return (
                         <div onClick={() => onChatChange(contact)} key={contact._id} className={`contact ${contact._id === currentChat?._id ? "selected" : ""}`}>
-                            <Contact contact={contact} />
+                            <Contact setContacts={setContacts} contact={contact} />
                         </div>
                     );
                 })}
