@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
         <Suspense fallback={""}>
-            <Router>
+            <Router basename="/">
                 <UserContextProvider>
                     <ToastContainer position="bottom-right" autoClose={3500} pauseOnHover={false} pauseOnFocusLoss={false} draggable theme="dark" />
                     <App />
