@@ -53,17 +53,19 @@ export default function Login() {
     return (
         <>
             <FormContainer>
-                <form autoComplete="off" onSubmit={handleSubmit}>
+                <form className="form" autoComplete="off" onSubmit={handleSubmit}>
                     <div className="brand">
                         <img src={Logo} alt="Logo" />
                         <h1>chaty</h1>
                     </div>
-                    <input value={state.username} type="text" placeholder="Username" name="username" onChange={handleChange} />
-                    <input value={state.password} type="password" placeholder="Password" name="password" onChange={handleChange} />
-                    <button type="submit">{isLoading ? "Loading..." : "Login"}</button>
-                    <span>
-                        Don't have an account ? <Link to="/register">Register</Link>
-                    </span>
+                    <div>
+                        <input value={state.username} type="text" placeholder="Username" name="username" onChange={handleChange} />
+                        <input value={state.password} type="password" placeholder="Password" name="password" onChange={handleChange} />
+                        <button type="submit">{isLoading ? "Loading..." : "Login"}</button>
+                        <span>
+                            Don't have an account ? <Link to="/register">Register</Link>
+                        </span>
+                    </div>
                 </form>
             </FormContainer>
         </>

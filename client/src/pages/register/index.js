@@ -45,23 +45,25 @@ export default function Register() {
     return (
         <>
             <FormContainer>
-                <form autoComplete="off" onSubmit={handleSubmit}>
+                <form className="form" autoComplete="off" onSubmit={handleSubmit}>
                     <div className="brand">
                         <img src={Logo} alt="Logo" />
                         <h1>chaty</h1>
                     </div>
-                    <input value={state.username} type="text" placeholder="Username" name="username" onChange={handleChange} />
-                    {errors?.username?.message && <span className="errorText">{errors.username.message}</span>}
-                    <input value={state.email} type="email" placeholder="Email" name="email" onChange={handleChange} />
-                    {errors?.email?.message && <span className="errorText">{errors.email.message}</span>}
-                    <input value={state.password} type="password" placeholder="Password" name="password" onChange={handleChange} />
-                    {errors?.password?.message && <span className="errorText">{errors.password.message}</span>}
-                    <input value={state.confirmPassword} type="password" placeholder="Confirm Password" name="confirmPassword" onChange={handleChange} />
-                    {errors?.confirmPassword?.message && <span className="errorText">{errors.confirmPassword.message}</span>}
-                    <button type="submit">{isLoading ? "Loading..." : "Register"}</button>
-                    <span>
-                        already have an account ? <Link to="/login">Login</Link>
-                    </span>
+                    <div>
+                        <input value={state.username} type="text" placeholder="Username" name="username" onChange={handleChange} />
+                        {errors?.username?.message && <span className="errorText">{errors.username.message}</span>}
+                        <input value={state.email} type="email" placeholder="Email" name="email" onChange={handleChange} />
+                        {errors?.email?.message && <span className="errorText">{errors.email.message}</span>}
+                        <input value={state.password} type="password" placeholder="Password" name="password" onChange={handleChange} />
+                        {errors?.password?.message && <span className="errorText">{errors.password.message}</span>}
+                        <input value={state.confirmPassword} type="password" placeholder="Confirm Password" name="confirmPassword" onChange={handleChange} />
+                        {errors?.confirmPassword?.message && <span className="errorText">{errors.confirmPassword.message}</span>}
+                        <button type="submit">{isLoading ? "Loading..." : "Register"}</button>
+                        <span>
+                            already have an account ? <Link to="/login">Login</Link>
+                        </span>
+                    </div>
                 </form>
             </FormContainer>
         </>
