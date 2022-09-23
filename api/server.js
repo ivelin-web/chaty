@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 app.use(cookieParser());
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors({ credentials: true, origin: process.env.CLIENT_URL }));
 
 // DB connection
 mongoose.connect(process.env.MONGO_URL, () => {
